@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formula One Analytics</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Formula One Analytics</h1>
+
+    <div>
+        <label for="data-select">Select Data:</label>
+        <select id="data-select" onchange="fetchData()">
+            <option value="">-- Select Data --</option>
+            <option value="drivers">Drivers</option>
+            <option value="teams">Teams</option>
+            <option value="manufacturers">Manufacturers</option>
+            <option value="races">Races</option>
+        </select>
+    </div>
+
+    <div id="visualization"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
