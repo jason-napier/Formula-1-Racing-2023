@@ -1,21 +1,21 @@
-Driver,Team,Salary,Age
-Max Verstappen,Red Bull,$55M,25
-Lewis Hamilton,Mercedes,$35M,38
-Charles Leclerc,Ferrari,$24M,25
-Lando Norris,McLaren,$20M,23
-Carlos Sainz,Ferrari,$12M,28
-Sergio Perez,Red Bull,$10M,33
-Valterri Bottas,Alfa Romeo,$10M,33
-George Russell,Mercedes,$8M,25
-Esteban Ocon,Alpine,$6M,26
-Pierre Gasly,Alpine,$5M,27
-Fernando Alonso,Aston Martin,$5M,41
-Kevin Magnussen,Haas,$5M,30
-Alex Albon,Williams,$3M,26
-Oscar Piastri,McLaren,$2M,21
-Lance Stroll,Aston Martin,$2M,24
-Guanyu Zhou,Alfa Romeo,$2M,23
-Nyck de Vries,AlphaTauri,$2M,28
-Nico Hülkenburg,AlphaTauri,$1M,35
-Yuki Tsunoda,AlphaTauri,$1M,22
-Logan Sargeant,Williams,$1M,22
+Driver,Team,Salary,Age,Salary_in_Millions
+Max Verstappen,Red Bull,$55M,25,55.0
+Lewis Hamilton,Mercedes,$35M,38,35.0
+Charles Leclerc,Ferrari,$24M,25,24.0
+Lando Norris,McLaren,$20M,23,20.0
+Carlos Sainz,Ferrari,$12M,28,12.0
+Sergio Perez,Red Bull,$10M,33,10.0
+Valterri Bottas,Alfa Romeo,$10M,33,10.0
+George Russell,Mercedes,$8M,25,8.0
+Esteban Ocon,Alpine,$6M,26,6.0
+Pierre Gasly,Alpine,$5M,27,5.0
+Fernando Alonso,Aston Martin,$5M,41,5.0
+Kevin Magnussen,Haas,$5M,30,5.0
+Alex Albon,Williams,$3M,26,3.0
+Oscar Piastri,McLaren,$2M,21,2.0
+Lance Stroll,Aston Martin,$2M,24,2.0
+Guanyu Zhou,Alfa Romeo,$2M,23,2.0
+Nyck de Vries,AlphaTauri,$2M,28,2.0
+Nico Hülkenburg,AlphaTauri,$1M,35,1.0
+Yuki Tsunoda,AlphaTauri,$1M,22,1.0
+Logan Sargeant,Williams,$1M,22,1.0
