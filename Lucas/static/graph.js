@@ -82,6 +82,10 @@ chart = new Chart(ctx, {
             y: {
                 beginAtZero: true,
                 max: 20,
+                title: {
+                    display: true,
+                    text: 'Position'
+                },
                 ticks: {
                     stepSize: 1
                 }
