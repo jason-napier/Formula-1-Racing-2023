@@ -49,64 +49,76 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
         }
 
         // line chart
-        chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [
-                    {
-                        label: `Driver 1: ${select1.value}`,
-                        data: [],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    },
-                    {
-                        label: `Driver 2: ${select2.value}`,
-                        data: [],
-                        fill: false,
-                        borderColor: 'rgb(255, 99, 132)',
-                        tension: 0.1
-                    }
-                ]
+chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: `Driver 1: ${select1.value}`,
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
             },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 20,
-                        ticks: {
-                            stepSize: 1
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            autoSkip: false
-                        }
-                    }
+            {
+                label: `Driver 2: ${select2.value}`,
+                data: [],
+                fill: false,
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Driver Comparison' // Adding title to the line chart
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 20,
+                ticks: {
+                    stepSize: 1
+                }
+            },
+            x: {
+                ticks: {
+                    autoSkip: false
                 }
             }
-        });
+        }
+    }
+});
 
-        // pie chart
-        pieChart = new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: Object.keys(winData),
-                datasets: [
-                    {
-                        label: 'Wins',
-                        data: Object.values(winData),
-                        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#9ccc65', '#ffa726', '#29b6f6', '#ab47bc', '#78909c', '#8d6e63', '#ec407a', '#7e57c2', '#26a69a', '#9e9d24', '#ff7043', '#8c9eff', '#66bb6a', '#d4e157', '#ffca28', '#26c6da']
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
+// pie chart
+pieChart = new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+        labels: Object.keys(winData),
+        datasets: [
+            {
+                label: 'Wins',
+                data: Object.values(winData),
+                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#9ccc65', '#ffa726', '#29b6f6', '#ab47bc', '#78909c', '#8d6e63', '#ec407a', '#7e57c2', '#26a69a', '#9e9d24', '#ff7043', '#8c9eff', '#66bb6a', '#d4e157', '#ffca28', '#26c6da']
             }
-        });
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Win Distribution'// Adding title to the pie chart
+            }
+        }
+    }
+});
 
         select1.addEventListener('change', () => {
             updateChart();
