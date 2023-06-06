@@ -9,30 +9,30 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
 
         races.forEach(race => {
             race.Results.forEach(result => {
-                const driverId = result.Driver.driverId;
+                const fullName = result.Driver.givenName + " " + result.Driver.familyName;
                 const position = result.position;
                 const circuitName = race.raceName;
 
-                if(!driverData[driverId]) {
-                    driverData[driverId] = {};
+                if(!driverData[fullName]) {
+                    driverData[fullName] = {};
                 }
 
-                driverData[driverId][circuitName] = position;
+                driverData[fullName][circuitName] = position;
             });
         });
 
         const select1 = document.getElementById('driver1');
         const select2 = document.getElementById('driver2');
 
-        for(let driverId in driverData) {
+        for(let fullName in driverData) {
             const option1 = document.createElement('option');
-            option1.text = driverId;
-            option1.value = driverId;
+            option1.text = fullName;
+            option1.value = fullName;
             select1.add(option1);
 
             const option2 = document.createElement('option');
-            option2.text = driverId;
-            option2.value = driverId;
+            option2.text = fullName;
+            option2.value = fullName;
             select2.add(option2);
         }
 
