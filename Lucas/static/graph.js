@@ -1,6 +1,9 @@
 let driverData = {};
+let winData = {};
 let chart = null;
+let pieChart = null;
 let ctx = document.getElementById('myChart').getContext('2d');
+let pieCtx = document.getElementById('pieChart').getContext('2d');
 
 fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
     .then(response => response.json())
@@ -18,6 +21,15 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
                 }
 
                 driverData[fullName][circuitName] = position;
+
+                // count the wins for each driver
+                if(position === "1") {
+                    if(!winData[fullName]) {
+                        winData[fullName] = 0;
+                    }
+
+                    winData[fullName]++;
+                }
             });
         });
 
@@ -36,6 +48,7 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
             select2.add(option2);
         }
 
+        // line chart
         chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -73,6 +86,25 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
                         }
                     }
                 }
+            }
+        });
+
+        // pie chart
+        pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(winData),
+                datasets: [
+                    {
+                        label: 'Wins',
+                        data: Object.values(winData),
+                        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#9ccc65', '#ffa726', '#29b6f6', '#ab47bc', '#78909c', '#8d6e63', '#ec407a', '#7e57c2', '#26a69a', '#9e9d24', '#ff7043', '#8c9eff', '#66bb6a', '#d4e157', '#ffca28', '#26c6da']
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
             }
         });
 

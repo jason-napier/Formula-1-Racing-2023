@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Line Graph</title>
+    <title>Driver Data</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: start; /* To align the top edges of the divs */
+        }
+
+        .dropdowns {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .charts {
+            width: 60%;
+        }
+
+        #myChart {
+            width: 100%;
+            height: 400px;
+        }
+
+        #pieChart {
+            width: 100%;
+            height: 300px; /* Adjust as needed */
+        }
+    </style>
 </head>
 <body>
-    <select id="driver1"></select>
-    <select id="driver2"></select>
-    <canvas id="myChart" width="400" height="200"></canvas>
+    <div class="container">
+        <div class="dropdowns">
+            <select id="driver1"></select>
+            <select id="driver2"></select>
+        </div>
+        <div class="charts">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="charts">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
     <script src="../static/graph.js"></script>
 </body>
 </html>
