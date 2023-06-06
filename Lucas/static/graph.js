@@ -66,6 +66,11 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
                         ticks: {
                             stepSize: 1
                         }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: false
+                        }
                     }
                 }
             }
@@ -78,6 +83,15 @@ fetch('https://ergast.com/api/f1/2023/results.json?limit=1000')
         select2.addEventListener('change', () => {
             updateChart();
         });
+
+        // Initialize chart with the first two drivers
+        const firstDriverName = select1.options[0].value;
+        const secondDriverName = select2.options[1].value;
+
+        select1.value = firstDriverName;
+        select2.value = secondDriverName;
+
+        updateChart();
 
         function updateChart() {
             const driver1 = driverData[select1.value];
