@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formula One Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="circuitsChart"></canvas>
+    <canvas id="driversChart"></canvas>
+    <canvas id="racesChart"></canvas>
+    <script>
+        $(document).ready(function() {
+            // Function to create and render a chart
+            function createChart(chartId, labels, data, label) {
+                var ctx = document.getElementById(chartId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            // Function to retrieve data from Flask route and create a chart
+            function createChartFromRoute(endpoint, chartId, label) {
+                $.ajax({
+                    url: endpoint,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var labels = [];
+                        var chartData = [];
+                        data.forEach(function(item) {
+                            labels.push(item[label]);
+                            chartData.push(item.count);
+                        });
+                        createChart(chartId, labels, chartData, label);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+            // Call Flask routes and create charts
+            createChartFromRoute('/circuits', 'circuitsChart', 'Circuit Name');
+            createChartFromRoute('/drivers', 'driversChart', 'Driver');
+            createChartFromRoute('/races', 'racesChart', 'Race');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formula One Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Formula One Data</h1>
+    <h2>Circuits</h2>
+    <table id="circuitsTable">
+        <thead>
+            <tr>
+                <th>Circuit Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <h2>Drivers</h2>
+    <table id="driversTable">
+        <thead>
+            <tr>
+                <th>Driver</th>
+                <th>Nationality</th>
+                <th>Team</th>
+                <th>Age</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <h2>Races</h2>
+    <table id="racesTable">
+        <thead>
+            <tr>
+                <th>Race</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            // Function to populate table data
+            function populateTable(endpoint, tableId) {
+                $.ajax({
+                    url: endpoint,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var tableBody = $(tableId + ' tbody');
+                        tableBody.empty();
+                        data.forEach(function(item) {
+                            var row = $('<tr></tr>');
+                            Object.values(item).forEach(function(value) {
+                                row.append('<td>' + value + '</td>');
+                            });
+                            tableBody.append(row);
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+            // Call Flask routes and populate tables
+            populateTable('/circuits', '#circuitsTable');
+            populateTable('/drivers', '#driversTable');
+            populateTable('/races', '#racesTable');
+        });
+    </script>
+</body>
+</html>
