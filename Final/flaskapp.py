@@ -1,17 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 # Config SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Jason/formula1_database.db' # Bryan's path to database/change as needed
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/lucasludwig/Desktop/Projects/project-3/Final/formula1_database.db' # Bryan's path to database/change as needed
 db = SQLAlchemy(app)
 
 # Create models for your tables
 class Circuit(db.Model):
     __tablename__ = 'circuit_info'
-    id = db.Column(db.Integer, primary_key=True)
-    circuit_name = db.Column(db.String(50))
+    circuit = db.Column(db.String(50), primary_key=True)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     city = db.Column(db.String(50))
@@ -19,8 +18,7 @@ class Circuit(db.Model):
 
 class Driver(db.Model):
     __tablename__ = 'driver_info'
-    id = db.Column(db.Integer, primary_key=True)
-    driver = db.Column(db.String(50))
+    driver = db.Column(db.String(50), primary_key=True)
     nationality = db.Column(db.String(50))
     team = db.Column(db.String(50))
     age = db.Column(db.Integer)
@@ -28,14 +26,17 @@ class Driver(db.Model):
 
 class Race(db.Model):
     __tablename__ = 'race_schedule'
-    id = db.Column(db.Integer, primary_key=True)
-    race = db.Column(db.String(50))
+    race = db.Column(db.String(50), primary_key=True)
     date = db.Column(db.Date)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/circuits', methods=['GET'])
 def get_circuits():
     circuits = Circuit.query.all()
-    data = [{'Circuit Name': c.circuit_name, 'Latitude': c.latitude, 'Longitude': c.longitude, 'City': c.city, 'Country': c.country} for c in circuits]
+    data = [{'Circuit': c.circuit, 'Latitude': c.latitude, 'Longitude': c.longitude, 'City': c.city, 'Country': c.country} for c in circuits]
     return jsonify(data)
 
 @app.route('/drivers', methods=['GET'])

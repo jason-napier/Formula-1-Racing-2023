@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>2023 Formula One Stats</title>
+    <title>2023 F1 Racing</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-        .container {
+        .charts-container {
             display: flex;
-            justify-content: space-around;
-            align-items: center; /* Align the dropdowns and charts in the center */
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         .dropdowns {
@@ -15,21 +25,16 @@
             flex-direction: column;
             justify-content: center;
             gap: 10px;
-            margin-right: 20px;
         }
 
         .charts {
-            width: 80%;
+            width: 45%;
         }
 
-        #myChart {
-            width: 100%;
-            height: 600px;
-        }
-
-        #pieChart {
-            width: 100%;
-            height: 300px; /* Adjust as needed */
+        .tables-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -39,23 +44,78 @@
             font-family: 'Courier New', Courier, monospace;
             text-decoration: underline;
         }
+
+        #myChart {
+            width: 100%;
+            height: 600px;
+        }
+
+        #pieChart {
+            width: 100%;
+            height: 300px;
+        }
+
+        #mapid {
+            height: 500px; 
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <h1>2023 F1 RACING</h1>
-    <div class="container">
+    <h1>2023 F1 Racing</h1>
+
+    <div class="charts-container">
         <div class="dropdowns">
-            <h2>Select Drivers</h2> <!-- Adding instruction for the user -->
             <select id="driver1"></select>
             <select id="driver2"></select>
         </div>
+
         <div class="charts">
             <canvas id="myChart"></canvas>
         </div>
+
         <div class="charts">
             <canvas id="pieChart"></canvas>
         </div>
     </div>
-    <script src="../static/graph.js"></script>
+
+    <div id="tables-container">
+        <div class="table-block">
+            <h2 class="table-title">Driver Info</h2>
+            <table id="driver-table">
+                <thead>
+                    <tr>
+                        <th>Driver</th>
+                        <th>Nationality</th>
+                        <th>Team</th>
+                        <th>Age</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    
+        <div class="table-block">
+            <h2 class="table-title">Race Schedule</h2>
+            <table id="race-table">
+                <thead>
+                    <tr>
+                        <th>Race</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <h2 class="map-title">Ciruits Map</h2>
+    <div id="mapid"></div>
+
+    <!-- Include your script files -->
+    <script src="{{ url_for('static', filename='graph.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
