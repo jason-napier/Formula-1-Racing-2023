@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Config SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Final/formula1.db' # Bryan's path to database/change as needed
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../Final/formula1_database.db' # Bryan's path to database/change as needed
 db = SQLAlchemy(app)
 
 # Create models for your tables
