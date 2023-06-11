@@ -56,9 +56,9 @@ class Race(Base):
 session = Session(bind=engine)
 
 #Check Class
-circuits = session.query(Circuit)
+circuits = session.query(Race)
 for x in circuits:
-    print(x.Circuit)
+    print(x.Race)
 
 #Close session
 session.close
