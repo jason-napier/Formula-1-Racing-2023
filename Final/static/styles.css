@@ -1,7 +1,10 @@
 #mapid {
-    height: 600px;
-    width: 1200px;
-    padding: 50px;
+    height: 450px;
+    width: 900px;
+    padding: 10px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .map-title {
