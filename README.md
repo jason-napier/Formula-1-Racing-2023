@@ -17,9 +17,9 @@ The following libraries may need to be installed
 -Formula 1 World Championship (1950 - 2023)(https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020?datasetId=468218)
 
 **Contributors**
-Lucas Ludwig
-Jason L. Napier
-Gabriel Rodriguez
+Lucas Ludwig, 
+Jason L. Napier, 
+Gabriel Rodriguez, 
 Bryan Ropp
 
 **Acknowledgments**
